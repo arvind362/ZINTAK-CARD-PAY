@@ -6,7 +6,7 @@ service cloud.firestore {
       allow read, update: if request.auth != null && request.auth.token.email == userEmail;
       allow create: if request.auth != null;
       // Only admin can update others' balance
-      allow update: if request.auth.token.email == "a4170646@gmail.com";
+      allow update: if request.auth.token.email == "a5859606162@gmail.com";
     }
     // Only involved users or admin can read their transaction
     match /transactions/{transactionId} {
@@ -14,7 +14,7 @@ service cloud.firestore {
       allow read: if request.auth != null &&
         (request.auth.token.email == resource.data.from || 
          request.auth.token.email == resource.data.to ||
-         request.auth.token.email == "a4170646@gmail.com");
+         request.auth.token.email == "a5859606162@gmail.com");
     }
   }
 }
