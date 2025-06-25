@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { db } from "../firebase";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 
-const ADMIN_EMAIL = "a4170646@gmail.com";
+const ADMIN_EMAIL = "a5859606162@gmail.com";
 
 const AdminPanel = ({ user }) => {
   const [email, setEmail] = useState("");
