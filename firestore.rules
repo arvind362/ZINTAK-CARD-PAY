@@ -1,0 +1,20 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Only authenticated users can read/write their own user data
+    match /users/{userEmail} {
+      allow read, update: if request.auth != null && request.auth.token.email == userEmail;
+      allow create: if request.auth != null;
+      // Only admin can update others' balance
+      allow update: if request.auth.token.email == "a4170646@gmail.com";
+    }
+    // Only involved users or admin can read their transaction
+    match /transactions/{transactionId} {
+      allow create: if request.auth != null;
+      allow read: if request.auth != null &&
+        (request.auth.token.email == resource.data.from || 
+         request.auth.token.email == resource.data.to ||
+         request.auth.token.email == "a4170646@gmail.com");
+    }
+  }
+}
